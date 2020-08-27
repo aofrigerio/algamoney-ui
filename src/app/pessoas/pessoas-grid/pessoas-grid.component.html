@@ -1,0 +1,25 @@
+<div class="ui-g">
+    <p-table [value]="pessoas" [responsive]="true" [paginator]="true" [rows]="5">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Nome</th>
+                <th>Cidade</th>
+                <th>Estado</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-people>
+            <tr>
+                <td>{{people.nome}}</td>
+                <td>{{people.cidade}}</td>
+                <td>{{people.estado}}</td>
+                <td><a href="#" pTooltip="{{people.status === true? 'Desativar' : 'Ativar'}}">{{people.status === true? 'Ativo' : 'Inativo'}}</a></td>
+                <td class="col-acoes">
+                    <a pButton icon=" pi pi-pencil " style="margin: auto 5px;" pTooltip="Editar" tooltipPosition="top"></a>
+                    <button pButton icon="pi pi-trash " pTooltip="Excluir" tooltipPosition="top"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

@@ -1,10 +1,12 @@
-import { AppComponent } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, NgModel } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {InputTextModule} from 'primeng/inputtext';
+import { PessoasGridComponent } from './pessoas-grid/pessoas-grid.component';
+import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
+import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
+
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { CalendarModule } from 'primeng/calendar';
@@ -12,29 +14,20 @@ import { InputMaskModule } from 'primeng/inputmask';
 import { TooltipModule } from 'primeng/tooltip';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { DropdownModule } from 'primeng/dropdown';
+import {InputTextModule} from 'primeng/inputtext';
 
 import { CurrencyMaskModule } from "ng2-currency-mask";
 
-import { PessoasModule } from './pessoas/pessoas.module';
-import { LancamentosModule } from './lancamentos/lancamentos.module';
-
-import { NavbarComponent } from './navbar/navbar.component';
-import { MessageComponent } from './message/message.component';
-
 @NgModule({
   declarations: [
-    AppComponent,
-    NavbarComponent,
-    MessageComponent
+    PessoasPesquisaComponent,
+    PessoaCadastroComponent,
+    PessoasGridComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
-
-    LancamentosModule,
-    PessoasModule,
-
     InputTextModule,
     ButtonModule,
     TableModule,
@@ -44,9 +37,10 @@ import { MessageComponent } from './message/message.component';
     DropdownModule,
     InputMaskModule,
     CurrencyMaskModule
-
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  exports: [
+    PessoasPesquisaComponent,
+    PessoaCadastroComponent
+  ]
 })
-export class AppModule { }
+export class PessoasModule { }

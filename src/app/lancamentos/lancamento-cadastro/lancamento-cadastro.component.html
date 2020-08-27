@@ -1,0 +1,69 @@
+<div class="container">
+
+    <form autocomplete="off">
+        <div class="ui-g">
+            <div class="ui-g-12">
+                <h1>Novo lançamento</h1>
+            </div>
+
+            <div class="ui-g-12">
+                <p-selectButton [options]="tipos" #tipo name="tipo"></p-selectButton>
+            </div>
+
+            <div class="ui-g-6 ui-md-3 ui-fluid">
+                <label>Vencimento</label>
+                <p-calendar ngModel name="vencimento" #vencimento="ngModel" required dateFormat="dd/mm/yy" showButtonBar="true"></p-calendar>
+                <!-- app-message [control]="vencimento" error="required" text="Informe um vencimento"></app-message> -->
+            </div>
+
+            <div class="ui-g-6 ui-md-3 ui-fluid">
+                <label>{{tipo.value == 'RECEITA' ? 'Recebimento' : 'Pagamento' }}</label>
+                <p-calendar ngModel name="pagamento" #pagamento="ngModel" required dateFormat="dd/mm/yy" showButtonBar="true"></p-calendar>
+                <!-- <app-message [control]="pagamento" error="required" text="Informe um data {{ tipo.value }}"></app-message> -->
+            </div>
+
+            <div class="ui-g-12 ui-md-9 ui-fluid">
+
+                <label>Descrição</label>
+                <input pInputText type="text" name="descricao" ngModel #descricao="ngModel" required minlength="5">
+                <!-- <app-message [control]="descricao" error="required" text="Informe uma descricao"></app-message> -->
+                <!--<app-message [control]="descricao" error="minlength" text="Tamanho inválido. Digite {{descricao.errors?.minlength?.requiredLength}} caracteres"></app-message> -->
+            </div>
+
+
+
+            <div class="ui-g-12 ui-md-3 ui-fluid">
+                <label>Valor</label>
+                <input currencyMask ngModel name="valor" #valor="ngModel" [options]="{prefix: '', thousands: '.', decimal: ',', allowNegative : false}" pInputText type="text" placeholder="0,00">
+                <!-- <app-message [control]="valor" error="required" text="Informe um valor"></app-message> -->
+            </div>
+
+            <div class="ui-g-12 ui-md-6 ui-fluid">
+                <label>Categoria</label>
+                <p-dropdown ngModel name="categoria" #categoria="ngModel" [options]="categoria" placeholder="Selecione..." [filter]="true" required></p-dropdown>
+                <!-- <app-message [control]="categoria" error="required" text="Informe um valor"></app-message> -->
+            </div>
+
+            <div class="ui-g-12 ui-md-6 ui-fluid">
+                <label>Pessoa</label>
+                <p-dropdown ngModel name="pessoa" #pessoa="ngModel" [options]="pessoa" placeholder="Selecione..." [filter]="true" required></p-dropdown>
+                <!-- <app-message [control]="pessoa" error="required" text="Informe uma pessoa"></app-message> -->
+            </div>
+
+
+            <div class="ui-g-12 ui-fluid">
+                <label>Observações</label>
+                <textarea pInputText rows="3"></textarea>
+            </div>
+
+
+            <div class="ui-g-12">
+                <button ngModel pButton type="submit" label="Salvar"></button>
+                <button pButton type="button" label="Novo" class="ui-button-info"></button>
+                <a href="javascript::">Voltar a página de pesquisa</a>
+            </div>
+
+        </div>
+    </form>
+
+</div>
