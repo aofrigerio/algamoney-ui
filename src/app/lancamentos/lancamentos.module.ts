@@ -1,5 +1,8 @@
+import { LancamentoService } from './lancamento.service';
+import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 import {AccordionModule} from 'primeng/accordion';     //accordion and accordion tab
 import {InputTextModule, InputText} from 'primeng/inputtext';
@@ -39,12 +42,17 @@ import { BrowserModule } from '@angular/platform-browser';
     SelectButtonModule,
     DropdownModule,
     CurrencyMaskModule,
-    FormsModule
+    FormsModule,
+
+    SharedModule
 
   ],
   exports: [
     LancamentoCadastroComponent,
     LancamentosPesquisaComponent
+  ],
+  providers: [
+
   ]
 })
 export class LancamentosModule { }

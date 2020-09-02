@@ -13,12 +13,12 @@
         </ng-template>
         <ng-template pTemplate="body" let-lanc>
             <tr>
-                <td>{{lanc.pessoa}}</td>
+                <td>{{lanc.pessoa.nome}}</td>
                 <td>{{lanc.descricao}}</td>
                 <td>{{lanc.dataVencimento}}</td>
                 <td>{{lanc.dataPagamento}}</td>
                 <td>{{lanc.tipo}}</td>
-                <td class="col-valor" [style.color]="lanc.tipo === 'DESPESA'? 'red' : 'blue'" currencyMask>{{lanc.valor}}</td>
+                <td class="col-valor" [style.color]="lanc.tipo === 'DESPESA'? 'red' : 'blue'">{{lanc.valor}}</td>
                 <td class="col-acoes">
                     <a pButton icon=" pi pi-pencil " style="margin: auto 5px;" pTooltip="Editar" tooltipPosition="top"></a>
                     <button pButton icon="pi pi-trash " pTooltip="Excluir" tooltipPosition="top"></button>

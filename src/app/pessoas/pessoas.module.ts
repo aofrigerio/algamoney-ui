@@ -1,3 +1,4 @@
+import { SharedModule } from './../shared/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, NgModel } from '@angular/forms';
@@ -36,7 +37,9 @@ import { CurrencyMaskModule } from "ng2-currency-mask";
     SelectButtonModule,
     DropdownModule,
     InputMaskModule,
-    CurrencyMaskModule
+    CurrencyMaskModule,
+
+    SharedModule
   ],
   exports: [
     PessoasPesquisaComponent,

@@ -1,3 +1,6 @@
+import { HttpClientModule } from '@angular/common/http';
+import { LancamentoService } from './lancamentos/lancamento.service';
+import { CoreModule } from './core/core.module';
 import { AppComponent } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -13,19 +16,14 @@ import { TooltipModule } from 'primeng/tooltip';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { DropdownModule } from 'primeng/dropdown';
 
-import { CurrencyMaskModule } from "ng2-currency-mask";
+import { CurrencyMaskModule } from 'ng2-currency-mask';
 
 import { PessoasModule } from './pessoas/pessoas.module';
 import { LancamentosModule } from './lancamentos/lancamentos.module';
 
-import { NavbarComponent } from './navbar/navbar.component';
-import { MessageComponent } from './message/message.component';
-
 @NgModule({
   declarations: [
-    AppComponent,
-    NavbarComponent,
-    MessageComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -43,10 +41,12 @@ import { MessageComponent } from './message/message.component';
     SelectButtonModule,
     DropdownModule,
     InputMaskModule,
-    CurrencyMaskModule
+    CurrencyMaskModule,
+    HttpClientModule,
+    CoreModule
 
   ],
-  providers: [],
+  providers: [LancamentoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
