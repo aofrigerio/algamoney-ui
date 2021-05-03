@@ -1,3 +1,4 @@
+import { MessageService } from 'primeng/api';
 import { HttpClientModule } from '@angular/common/http';
 import { LancamentoService } from './lancamentos/lancamento.service';
 import { CoreModule } from './core/core.module';
@@ -15,6 +16,7 @@ import { InputMaskModule } from 'primeng/inputmask';
 import { TooltipModule } from 'primeng/tooltip';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { DropdownModule } from 'primeng/dropdown';
+import {ToastModule} from 'primeng/toast';
 
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 
@@ -43,10 +45,16 @@ import { LancamentosModule } from './lancamentos/lancamentos.module';
     InputMaskModule,
     CurrencyMaskModule,
     HttpClientModule,
-    CoreModule
+    CoreModule,
+    ToastModule
 
   ],
-  providers: [LancamentoService],
+  providers: [LancamentoService, MessageService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+  constructor(){
+  }
+
+}

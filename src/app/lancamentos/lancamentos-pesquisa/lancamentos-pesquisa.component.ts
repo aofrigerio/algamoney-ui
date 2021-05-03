@@ -1,54 +1,39 @@
-import { HttpParams } from '@angular/common/http';
 import { LancamentoService, LancamentoFiltro } from './../lancamento.service';
-import { Component, OnInit } from '@angular/core';
-import { Data } from '@angular/router';
+import { Component } from '@angular/core';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',
   templateUrl: './lancamentos-pesquisa.component.html',
   styleUrls: ['./lancamentos-pesquisa.component.css']
 })
-export class LancamentosPesquisaComponent implements OnInit  {
+export class LancamentosPesquisaComponent {
 
-  lancamentos = [/*
-    { tipo: 'DESPESA', descricao: 'Compra de pão', dataVencimento: '10/06/2017',
-      dataPagamento: null, valor: 4.55, pessoa: 'Padaria do José' },
-    { tipo: 'RECEITA', descricao: 'Venda de software', dataVencimento: '10/06/2017',
-      dataPagamento: '09/06/2017', valor: 80000, pessoa: 'Atacado Brasil' },
-    { tipo: 'DESPESA', descricao: 'Impostos', dataVencimento: '20/07/2017',
-      dataPagamento: null, valor: 14312, pessoa: 'Ministério da Fazenda' },
-    { tipo: 'DESPESA', descricao: 'Mensalidade de escola', dataVencimento: '05/06/2017',
-      dataPagamento: '30/05/2017', valor: 800, pessoa: 'Escola Abelha Rainha' },
-    { tipo: 'RECEITA', descricao: 'Venda de carro', dataVencimento: '18/08/2017',
-      dataPagamento: null, valor: 55000, pessoa: 'Sebastião Souza' },
-    { tipo: 'DESPESA', descricao: 'Aluguel', dataVencimento: '10/07/2017',
-      dataPagamento: '09/07/2017', valor: 1750, pessoa: 'Casa Nova Imóveis' },
-    { tipo: 'DESPESA', descricao: 'Mensalidade musculação', dataVencimento: '13/07/2017',
-      dataPagamento: null, valor: 180, pessoa: 'Academia Top' }*/
-  ];
+  totalRegistros = 0;
+  filtro = new LancamentoFiltro();
+  lancamentos = [];
 
-  descricao: string;
-  dataVencimentoInicio: Data;
-  dataVencimentoFim: Data;
+  constructor(private lancamentoService: LancamentoService,
+              private messageService: MessageService
+    ){}
 
-  constructor(private lancamentoService: LancamentoService){}
-
-  ngOnInit () {
-   this.pesquisar();
+  consultar(param){
+    this.pesquisar(param.pagina);
   }
 
-  pesquisar(){
+  pesquisar(pagina = 0){
+    this.filtro.pagina = pagina;
+    //const params = new HttpParams();
 
-    const params = new HttpParams();
+    this.lancamentoService.consultar(this.filtro).then(dados => {
+        this.lancamentos = dados.lancamentos;
+        this.totalRegistros = dados.total;
+      });
+  }
 
-    const filtro: LancamentoFiltro = {
-      descricao: this.descricao,
-      dataVencimentoInicio: this.dataVencimentoInicio,
-      dataVencimentoFim: this.dataVencimentoFim
-    };
-
-    this.lancamentoService.consultar(filtro)
-    .then(dados => this.lancamentos = dados);
+  excluir(lancamento: any){
+    this.lancamentoService.excluir(lancamento.codigo)
+      .then(() =>  this.messageService.add({severity:'success', summary:'Lancamento', detail:`Lançamento: ${lancamento.descricao} excluído com sucesso`}));
   }
 
 }

@@ -1,3 +1,4 @@
+import { PessoaService } from './pessoa.service';
 import { SharedModule } from './../shared/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -44,6 +45,9 @@ import { CurrencyMaskModule } from "ng2-currency-mask";
   exports: [
     PessoasPesquisaComponent,
     PessoaCadastroComponent
+  ],
+  providers: [
+    PessoaService
   ]
 })
 export class PessoasModule { }

@@ -3,21 +3,22 @@
         <div class="ui-g-12">
             <h1>Pessoas</h1>
         </div>
+        <form autocomplete="off" (ngSubmit)="pesquisar()">
+            <div class="ui-g-12 ui-fluid">
+                <label>Nome</label>
+                <input pInputText type="text" name="nome" [(ngModel)]="filtro.nome">
+            </div>
+            <div class="ui-g-12">
+                <button pButton type="submit" label="Pesquisar"></button>
+            </div>
+        </form>
 
-        <div class="ui-g-12 ui-fluid">
-            <label>Nome</label>
-            <input pInputText type="text">
+        <app-pessoas-grid [pessoas]="pessoas" [filtro]="filtro" [totalRegistros]="totalRegistros" (mudarPagina)="consultar($event)"></app-pessoas-grid>
+
+        <div class="ui-g">
+            <div class="ui-g-12">
+                <button pButton type="submit" label="Nova Pessoa"></button>
+            </div>
         </div>
-        <div class="ui-g-12">
-            <button pButton type="submit" label="Pesquisar"></button>
-        </div>
+
     </div>
-
-    <app-pessoas-grid [pessoas]="pessoas"></app-pessoas-grid>
-
-    <div class="ui-g">
-        <div class="ui-g-12">
-            <button pButton type="submit" label="Nova Pessoa"></button>
-        </div>
-    </div>
-</div>

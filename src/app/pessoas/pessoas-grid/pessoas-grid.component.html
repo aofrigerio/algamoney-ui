@@ -1,5 +1,5 @@
 <div class="ui-g">
-    <p-table [value]="pessoas" [responsive]="true" [paginator]="true" [rows]="5">
+    <p-table [value]="pessoas" [paginator]="true" [rows]="filtro.itensPorPagina" [lazy]="true" (onLazyLoad)="aoMudarPagina($event)" [showCurrentPageReport]="true" [totalRecords]="totalRegistros" [responsive]="true">
         <ng-template pTemplate="header">
             <tr>
                 <th>Nome</th>
@@ -12,9 +12,9 @@
         <ng-template pTemplate="body" let-people>
             <tr>
                 <td>{{people.nome}}</td>
-                <td>{{people.cidade}}</td>
-                <td>{{people.estado}}</td>
-                <td><a href="#" pTooltip="{{people.status === true? 'Desativar' : 'Ativar'}}">{{people.status === true? 'Ativo' : 'Inativo'}}</a></td>
+                <td>{{people.endereco.cidade}}</td>
+                <td>{{people.endereco.estado}}</td>
+                <td><a href="#" pTooltip="{{people.status === true? 'Desativar' : 'Ativar'}}">{{people.ativo === true? 'Ativo' : 'Inativo'}}</a></td>
                 <td class="col-acoes">
                     <a pButton icon=" pi pi-pencil " style="margin: auto 5px;" pTooltip="Editar" tooltipPosition="top"></a>
                     <button pButton icon="pi pi-trash " pTooltip="Excluir" tooltipPosition="top"></button>
